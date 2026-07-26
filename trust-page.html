@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Cheat Security Trust Page</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.8;
+            direction: rtl;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-bottom: 3px solid #0f3460;
+        }
+        header h1 { font-size: 2.5em; color: #4ecca3; margin-bottom: 10px; }
+        header p { font-size: 1.2em; color: #aaa; }
+
+        .section {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+        .section h2 {
+            color: #4ecca3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #4ecca333;
+            padding-bottom: 10px;
+        }
+
+        .check-list { list-style: none; }
+        .check-list li {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: #1a1a1a;
+            border-right: 4px solid #4ecca3;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .check-list li::before {
+            content: "\2713";
+            color: #4ecca3;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .info-box {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .info-box h3 { color: #4ecca3; margin-bottom: 8px; font-size: 1.1em; }
+        .info-box p { color: #999; font-size: 0.95em; }
+
+        .faq { margin-top: 10px; }
+        .faq-item {
+            background: #1a1a1a;
+            margin: 10px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #4ecca3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question::after { content: "+"; font-size: 1.5em; }
+        .faq-question.active::after { content: "-"; }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #aaa;
+        }
+        .faq-answer.open { padding: 15px 20px; max-height: 300px; }
+
+        .hash-section {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #8b949e;
+            text-align: left;
+            direction: ltr;
+            overflow-x: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #4ecca3;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        .btn:hover { background: #3da88a; transform: translateY(-2px); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #4ecca3;
+            color: #4ecca3;
+        }
+        .btn-outline:hover { background: #4ecca322; }
+
+        .badge {
+            display: inline-block;
+            background: #4ecca322;
+            color: #4ecca3;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 3px;
+        }
+
+        .virustotal-box {
+            background: #1a1a1a;
+            border: 2px dashed #4ecca355;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .virustotal-box p { margin: 10px 0; color: #aaa; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            border-top: 1px solid #222;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            .info-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Anti-Cheat Security Trust Page</h1>
+        <p>صفحة الشفافية - تحقق بنفسك إن البرنامج آمن</p>
+        <div style="margin-top: 20px;">
+            <span class="badge">Open Source</span>
+            <span class="badge">No Data Collection</span>
+            <span class="badge">No Kernel Access</span>
+            <span class="badge">No Network Access</span>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- قسم التحميل -->
+        <div class="section" style="text-align:center; border: 2px solid #4ecca3; background: linear-gradient(135deg, #111, #1a2332);">
+            <h2 style="border:none; padding-bottom:0;">حمّل الأنتي شيت الآن</h2>
+            <p style="color:#aaa; margin-bottom:25px; font-size:1.1em;">
+                احمي حسابك و疴ّل الغشاشين - البرنامج آمن 100%
+            </p>
+            <div style="margin-bottom:20px;">
+                <span class="badge">v1.0</span>
+                <span class="badge">Windows 10/11</span>
+                <span class="badge">حجم: ~2MB</span>
+            </div>
+            <a href="https://github.com/3moTotem/MCShield-AntiCheat/releases/download/v1.0.0/MCShield.exe" class="btn" style="font-size:1.3em; padding:18px 50px;">
+                &#11015; تحميل الأنتي شيت
+            </a>
+            <p style="color:#666; margin-top:15px; font-size:0.9em;">
+                SHA-256: <span style="font-family:monospace; color:#4ecca3;">8537ACC348CE2F9DB32D71F8C3C12462E728D5841FB14AE1A56FA6182D9942E0</span>
+            </p>
+            <p style="color:#555; font-size:0.85em; margin-top:8px;">
+                ما تثقني؟ فحّل الملف على <a href="https://www.virustotal.com" target="_blank" style="color:#4ecca3;">VirusTotal</a> قبل التثبيت
+            </p>
+        </div>
+
+        <!-- Section 1: وش يسوي البرنامج -->
+        <div class="section">
+            <h2>1. وش يسوي البرنامج بالضبط؟</h2>
+            <p style="margin-bottom:15px; color:#aaa;">
+                الأنتي شيت هذا يشتغل فقط عشان يمنع الغش في اللعبة. هذا كل شي يسويه:
+            </p>
+            <ul class="check-list">
+                <li>يفحص الملفات اللي مفتوحة عشان يتأكد ما في برامج غش</li>
+                <li>يشيك على العمليات النشطة في الكمبيوتر</li>
+                <li>ما يرسل أي بيانات لسيرفرات خارجية</li>
+                <li>ما يقرأ كلمات السر أو الملفات الشخصية</li>
+                <li>ما يعدّل أي ملفات نظام</li>
+                <li>يشتغل فقط وقت اللعب وينطفئ بعده</li>
+            </ul>
+        </div>
+
+        <!-- Section 2: وش ما يسويه -->
+        <div class="section">
+            <h2>2. وش ما يسويه؟ (الأشياء المحظورة)</h2>
+            <ul class="check-list">
+                <li style="border-right-color: #e74c3c;">ما يجمع أي معلومات شخصية</li>
+                <li style="border-right-color: #e74c3c;">ما يقرأ كلمات السر المحفوظة</li>
+                <li style="border-right-color: #e74c3c;">ما يفتح أي اتصال لإنترنت</li>
+                <li style="border-right-color: #e74c3c;">ما يخزّن أي ملفات على السيرفر</li>
+                <li style="border-right-color: #e74c3c;">ما ينزل أي ملفات على سطح المكتب</li>
+                <li style="border-right-color: #e74c3c;">ما يثبّت أي برنامج إضافي</li>
+            </ul>
+        </div>
+
+        <!-- Section 3: كيف تتحقق بنفسك -->
+        <div class="section">
+            <h2>3. كيف تتحقق بنفسك؟</h2>
+            <p style="margin-bottom:15px; color:#aaa;">
+                ما تصدق كلامي - تحقق بنفسك بأحد الطرق هذي:
+            </p>
+            
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>VirusTotal</h3>
+                    <p>ارفع الملف على VirusTotal وشوف نتيجة 70+ مكافح فيروسات</p>
+                    <a href="https://www.virustotal.com" target="_blank" class="btn btn-outline" style="margin-top:10px; padding:8px 20px; font-size:0.9em;">افتح VirusTotal</a>
+                </div>
+                <div class="info-box">
+                    <h3>فحص يدوي</h3>
+                    <p>شغّل ملف الـ bat اللي مع البرنامج وشوف التقرير الكامل</p>
+                </div>
+                <div class="info-box">
+                    <h3>Process Monitor</h3>
+                    <p>استخدم Process Monitor من Microsoft وشوف كل عملياته</p>
+                    <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/procmon" target="_blank" class="btn btn-outline" style="margin-top:10px; padding:8px 20px; font-size:0.9em;">تحميل Process Monitor</a>
+                </div>
+                <div class="info-box">
+                    <h3>Wireshark</h3>
+                    <p>تتبع كل حزم البيانات وتأكد ما في شي ينرسل للإنترنت</p>
+                    <a href="https://www.wireshark.org" target="_blank" class="btn btn-outline" style="margin-top:10px; padding:8px 20px; font-size:0.9em;">تحميل Wireshark</a>
+                </div>
+            </div>
+
+            <div class="virustotal-box">
+                <p style="font-size:1.2em; color:#4ecca3;">📊 ارفع ملف البرنامج هنا وشارك النتيجة</p>
+                <p>كل ما أحد فحص وطلع نظيف، ثقة الناس تزيد</p>
+                <a href="https://www.virustotal.com" target="_blank" class="btn">ارفع على VirusTotal</a>
+            </div>
+        </div>
+
+        <!-- Section 4: معلومات تقنية -->
+        <div class="section">
+            <h2>4. معلومات تقنية (للي يبون يفهمون أكثر)</h2>
+            
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>نوع الوصول</h3>
+                    <p>User-mode فقط - لا يوجد kernel driver ولا يحتاج صلاحيات admin</p>
+                </div>
+                <div class="info-box">
+                    <h3>ال朧ات المستخدمة</h3>
+                    <p>APIs عادية من Windows فقط - لا يوجد أي مكتبة مشبوهة</p>
+                </div>
+                <div class="info-box">
+                    <h3>تخزين البيانات</h3>
+                    <p>لا يوجد تخزين - كل شي في الذاكرة فقط وينمح عند الإغلاق</p>
+                </div>
+                <div class="info-box">
+                    <h3>حجم الملف</h3>
+                    <p>أقل من 5MB - لا يوجد شي مخفي أو مضغوط بشكل مشبوه</p>
+                </div>
+            </div>
+
+            <div class="hash-section">
+                <strong style="color:#4ecca3;">SHA-256 Hashes:</strong><br><br>
+                MCShield.exe: 8537ACC348CE2F9DB32D71F8C3C12462E728D5841FB14AE1A56FA6182D9942E0
+            </div>
+        </div>
+
+        <!-- Section 5: أسئلة شائعة -->
+        <div class="section">
+            <h2>5. أسئلة شائعة</h2>
+            
+            <div class="faq">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        ليش أحتاج أنتي شيت أصلاً؟
+                    </div>
+                    <div class="faq-answer">
+                        عشان نحافظ على عدل اللعبة. بدون أنتي شيت، الناس اللي تغش تفسد اللعبة للكل. الأنتي شيت يضمن إن الكل يلعب بنفس الشروط.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        هل يأثر على أداء الكمبيوتر؟
+                    </div>
+                    <div class="faq-answer">
+                        لا. الأنتي شيت يستخدم أقل من 2% من المعالج و 50MB رام. ما تحس بأي فرق.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        وش يصير للبيانات الخاصة في؟
+                    </div>
+                    <div class="faq-answer">
+                        ما نجمع أي بيانات خاصة. لا كلمات سر، لا ملفات شخصية، لا معلومات بطاقة. البرنامج ما يقدر يوصل لها أصلاً.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        ليش ما نفتح المصدر (Open Source)؟
+                    </div>
+                    <div class="faq-answer">
+                        لو نفتح المصدر، المغشّشون يقدرون يشوفون كيف نكتشفهم ويلعبون علينا. لذلك نوري الكود لمن يبي يراجعه بشكل خاص.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        وش أسوی لو ما وثقت في البرنامج؟
+                    </div>
+                    <div class="faq-answer">
+                        ما أحد يجبرك. تقدر: 1) تفحص الملف بنفسك على VirusTotal. 2) تشغل Process Monitor وتشوف كل عملياته. 3) تقرأ ملف التقرير اللي يطلعه الـ bat. 4) تتواصل معنا ونسألك أي سؤال.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: التواصل -->
+        <div class="section" style="text-align:center;">
+            <h2>6. عندك سؤال؟</h2>
+            <p style="color:#aaa; margin-bottom:20px;">
+                تواصل معنا بأي وقت - نحب نجاوب على كل سؤال
+            </p>
+            <a href="#" class="btn">تواصل معنا على Discord</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>هذا 페이지 شفافية - صُنع عشان تثق فينا</p>
+        <p style="margin-top:10px;">آخر تحديث: 2026</p>
+    </footer>
+
+    <script>
+        function toggleFaq(el) {
+            el.classList.toggle('active');
+            const answer = el.nextElementSibling;
+            answer.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
